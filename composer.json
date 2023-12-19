@@ -1,0 +1,35 @@
+{
+    "name": "holdmyglass/zapcraft",
+    "description": "A Laravel package to generate necessary files for any Entity",
+    "keywords": [
+        "Sushanta Pyakurel",
+        "laravel",
+        "zapcraft",
+        "laravel package"
+    ],
+    "homepage": "https://github.com/holdmyglass/zapcraft",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sushanta Pyakurel",
+            "email": "pyakurelsushanta@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "HoldMyGlass\\ZapCraft\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.1",
+        "nwidart/laravel-modules": "^10.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "HoldMyGlass\\ZapCraft\\ZapCraftServiceProvider"
+            ]
+        }
+    }
+}

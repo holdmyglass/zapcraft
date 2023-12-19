@@ -1,0 +1,21 @@
+<?php
+
+namespace {{ namespace }};
+
+use Modules\{{ module }}\DTO{{ subFolderNamespace }}\{{ class }}DTO;
+use Modules\{{ module }}\app\Models\{{ class }};
+
+class {{ class }}Service
+{
+
+    public function create{{ class }}({{ class }}DTO ${{ classLower }}Dto): {{ class }}
+    {
+        return {{ class }}::create(${{ classLower }}Dto);
+    }
+
+    public function update{{ class }}({{ class }} ${{ classLower }}, {{ class }}DTO ${{ classLower }}Dto): {{ class }}
+    {
+        return ${{ classLower }};
+    }
+
+}

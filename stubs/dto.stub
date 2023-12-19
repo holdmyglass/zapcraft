@@ -1,0 +1,11 @@
+<?php
+
+namespace {{ namespace }};
+
+readonly class {{ class }}DTO
+{
+    public function __construct(
+        public ?string $id = null,
+    ) {
+    }
+}

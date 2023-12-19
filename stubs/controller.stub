@@ -1,0 +1,87 @@
+<?php
+
+namespace {{ namespace }};
+
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Routing\Controller;
+use Modules\{{ module }}\app\Models\{{ class }};
+use Modules\{{ module }}\app\Http\Requests{{ subFolderNamespace }}\{{ class }}\ReadOne{{ class }}Request;
+use Modules\{{ module }}\app\Http\Requests{{ subFolderNamespace }}\{{ class }}\ReadMany{{ class }}Request;
+use Modules\{{ module }}\app\Http\Requests{{ subFolderNamespace }}\{{ class }}\Create{{ class }}Request;
+use Modules\{{ module }}\app\Http\Requests{{ subFolderNamespace }}\{{ class }}\Update{{ class }}Request;
+use Modules\{{ module }}\app\Http\Requests{{ subFolderNamespace }}\{{ class }}\Delete{{ class }}Request;
+use Modules\{{ module }}\Interfaces{{ subFolderNamespace }}\{{ class }}\Read{{ class }}RepositoryInterface;
+use Modules\{{ module }}\Interfaces{{ subFolderNamespace }}\{{ class }}\Write{{ class }}RepositoryInterface;
+use Modules\{{ module }}\app\Resources{{ subFolderNamespace }}\{{ class }}\{{ class }}Collection;
+use Modules\{{ module }}\app\Resources{{ subFolderNamespace }}\{{ class }}\{{ class }}Resource;
+
+class {{ class }}Controller extends Controller
+{
+
+    public function __construct(
+        private Read{{ class }}RepositoryInterface $read{{ class }}Repository,
+        private Write{{ class }}RepositoryInterface $write{{ class }}Repository
+    ) {
+    }
+
+    public function show(ReadOne{{ class }}Request $request, {{ class }} ${{ class }}): {{ class }}Resource | JsonResponse
+    {
+        try {
+            return new {{ class }}Resource($this->read{{ class }}Repository->show($request, ${{ class }}));
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => "something went wrong"
+            ], 500);
+        }
+    }
+
+    public function index(ReadMany{{ class }}Request $request): {{ class }}Collection | JsonResponse
+    {
+        try {
+            return new {{ class }}Collection($request, $this->read{{ class }}Repository->index($request));
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => "something went wrong"
+            ], 500);
+        }
+    }
+
+    public function store(Create{{ class }}Request $request): {{ class }}Resource | JsonResponse
+    {
+        try {
+            return new {{ class }}Resource($this->write{{ class }}Repository->store($request));
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => "something went wrong"
+            ], 500);
+        }
+    }
+
+    public function update(Update{{ class }}Request $request, {{ class }} ${{ class }}): {{ class }}Resource | JsonResponse
+    {
+        try {
+            return new {{ class }}Resource($this->write{{ class }}Repository->update($request, ${{ class }}));
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => "something went wrong"
+            ], 500);
+        }
+    }
+
+    public function destroy(Delete{{ class }}Request $request, {{ class }} ${{ class }}): JsonResponse
+    {
+        try {
+            return  $this->write{{ class }}Repository->destroy($request, ${{ class }});
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => "something went wrong"
+            ], 500);
+        }
+    }
+}

@@ -1,0 +1,15 @@
+<?php
+
+namespace {{ namespace }};
+
+use Modules\{{ module }}\app\Models\{{ class }};
+use Modules\{{ module }}\app\Http\Requests{{ subFolderNamespace }}\{{ class }}\Create{{ class }}Request;
+use Modules\{{ module }}\app\Http\Requests{{ subFolderNamespace }}\{{ class }}\Update{{ class }}Request;
+use Modules\{{ module }}\app\Http\Requests{{ subFolderNamespace }}\{{ class }}\Delete{{ class }}Request;
+
+interface Write{{ class }}RepositoryInterface
+{
+    public function store(Create{{ class }}Request $request): {{ class }};
+    public function update(Update{{ class }}Request $request, {{ class }} ${{ classLower }}): {{ class }};
+    public function destroy(Delete{{ class }}Request $request, {{ class }} ${{ classLower }}): bool;
+}

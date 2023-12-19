@@ -1,0 +1,18 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Modules\{{ module }}\app\Http\Controllers{{ subFolderNamespace }}\{{ class }}Controller;
+
+Route::prefix('v1')->group(function () {
+
+    Route::middleware('guest')->group(function () {
+        Route::get('{{ classLower }}', [{{ class }}Controller::class, 'index'])->name('{{ classLower }}.index');
+        Route::get('{{ classLower}}/{{ classLowerParam }}', [{{ class }}Controller::class, 'show'])->name('{{ classLower }}.show');
+    });
+
+    Route::middleware(['auth:api', 'auth.profile'])->group(function () {
+        Route::post('{{ classLower }}', [{{ class }}Controller::class, 'store'])->name('{{ classLower }}.create');
+        Route::patch('{{ classLower }}/{{ classLowerParam }}', [{{ class }}Controller::class, 'update'])->name('{{ classLower }}.update');
+        Route::delete('{{ classLower }}/{{ classLowerParam }}', [{{ class }}Controller::class, 'destroy'])->name('{{ classLower }}.destroy');
+    });
+});

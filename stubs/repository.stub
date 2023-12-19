@@ -1,0 +1,58 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Collection;
+use Modules\{{ module }}\app\Models\{{ class }};
+use Modules\{{ module }}\app\Http\Requests{{ subFolderNamespace }}\{{ class }}\ReadOne{{ class }}Request;
+use Modules\{{ module }}\app\Http\Requests{{ subFolderNamespace }}\{{ class }}\ReadMany{{ class }}Request;
+use Modules\{{ module }}\app\Http\Requests{{ subFolderNamespace }}\{{ class }}\Create{{ class }}Request;
+use Modules\{{ module }}\app\Http\Requests{{ subFolderNamespace }}\{{ class }}\Update{{ class }}Request;
+use Modules\{{ module }}\app\Http\Requests{{ subFolderNamespace }}\{{ class }}\Delete{{ class }}Request;
+use Modules\{{ module }}\Interfaces{{ subFolderNamespace }}\{{ class }}\Read{{ class }}RepositoryInterface;
+use Modules\{{ module }}\Interfaces{{ subFolderNamespace }}\{{ class }}\Write{{ class }}RepositoryInterface;
+use Modules\{{ module }}\Services{{ subFolderNamespace }}\{{ class }}Service;
+use Modules\{{ module }}\DTO{{ subFolderNamespace }}\{{ class }}DTO;
+
+class {{ class }}Repository implements Read{{ class }}RepositoryInterface, Write{{ class }}RepositoryInterface
+{
+
+
+    public function __construct(
+        private {{ class }}Service ${{ class }}Service
+    ) {
+    }
+
+    public function show(ReadOne{{ class }}Request $request, {{ class }} ${{ classLower }}): {{ class }}
+    {
+        return ${{ classLower }};
+    }
+
+    public function index(ReadMany{{ class }}Request $request): Collection
+    {
+        return {{ class }}::all();
+    }
+
+    public function store(Create{{ class }}Request $request): {{ class }}
+    {
+        ${{ classLower }}DTO = new {{ class }}DTO(
+
+        );
+
+        return $this->{{ class }}Service->create{{ class }}(${{ classLower }}DTO);
+    }
+
+    public function update(Update{{ class }}Request $request, {{ class }} ${{ classLower }}): {{ class }}
+    {
+        ${{ classLower }}DTO = new {{ class }}DTO(
+
+        );
+
+        return $this->{{ class }}Service->update{{ class }}(${{ classLower }}, ${{ classLower }}DTO);
+    }
+
+    public function destroy(Delete{{ class }}Request $request, {{ class }} ${{ classLower }}): bool
+    {
+        return ${{ classLower }}->delete();
+    }
+}
