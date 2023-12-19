@@ -7,6 +7,8 @@
         "zapcraft",
         "laravel package"
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": false,
     "homepage": "https://github.com/holdmyglass/zapcraft",
     "license": "MIT",
     "authors": [

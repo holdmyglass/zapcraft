@@ -9,7 +9,7 @@ ZapCraft is designed with my favorite coding structure in mind, offering a solut
 To install ZapCraft, use the following Composer command:
 
 ```bash
-composer require holdmyglass/zapcraft:dev-alpha1-0.1.0
+composer require holdmyglass/zapcraft:
 ```
 
 ## Getting Started
